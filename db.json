@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "type": "지출",
+      "category": "식비",
+      "amount": 12000,
+      "date": "2025-04-07",
+      "memo": "점심 김밥천국"
+    },
+    {
+      "id": 2,
+      "type": "수입",
+      "category": "용돈",
+      "amount": 50000,
+      "date": "2025-04-05",
+      "memo": "엄마한테 받은 돈"
+    },
+    {
+      "id": 3,
+      "type": "지출",
+      "category": "교통",
+      "amount": 2350,
+      "date": "2025-04-07",
+      "memo": "버스비"
+    },
+    {
+      "id": 4,
+      "type": "지출",
+      "category": "간식",
+      "amount": 3500,
+      "date": "2025-04-06",
+      "memo": "편의점 아이스크림"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "test@example.com",
+      "password": "1234"
+    }
+  ],
+  "categories": ["식비", "교통", "간식", "문화생활", "고정지출", "쇼핑", "기타"]
+}

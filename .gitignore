@@ -28,3 +28,28 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# node modules
+node_modules/
+
+# log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables file
+.env
+
+# local development server settings
+.vitepress/dist/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# json-server mock data
+db.json
