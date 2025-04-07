@@ -1,9 +1,12 @@
 @import './base.css';
+/* SpoqaHanSans 웹폰트 */
+@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  font-weight: normal;
+  font-weight: 400;
+  font-family: 'Spoqa Han Sans';
 }
 
 a,
