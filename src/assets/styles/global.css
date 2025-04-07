@@ -16,6 +16,8 @@ body {
   background-color: white;
   margin: 0 auto;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 768px) {
