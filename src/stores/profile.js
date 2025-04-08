@@ -1,0 +1,64 @@
+import { ref, computed } from 'vue';
+import { defineStore } from 'pinia';
+import axios from 'axios';
+
+export const useProfileStore = defineStore('profile', () => {
+  const BASEURI = '/api/profile';
+  const user_name = ref([]);
+  const user_email = ref([]);
+
+  const fetchProfile = async () => {
+    try {
+      // 기본 get 테스트
+      const response = await axios.get(BASEURI);
+      user_name.value = response.data.name;
+      user_email.value = response.data.email;
+      console.log('유저 이름: ', user_name.value);
+      console.log('유저 이메일: ', user_email.value);
+    } catch (error) {
+      console.error('오류: ', error);
+    }
+  };
+
+  const handleEditProfile = async (updatedUser) => {
+    try {
+      const response = await axios.put(BASEURI, updatedUser);
+      user_name.value = response.data.name;
+      user_email.value = response.data.email;
+      console.log('업데이트 된 유저 이름: ', user_name.value);
+      console.log('업데이트 된 유저 이메일: ', user_email.value);
+    } catch (error) {
+      console.error('프로필 업데이트 실패:', error);
+    }
+  };
+
+  return { user_name, user_email, fetchProfile, handleEditProfile };
+});
+
+// import { defineStore } from 'pinia';
+// import { ref, computed } from 'vue';
+// import axios from 'axios';
+// export const useProfileStore = defineStore('Profile', () => {
+//   const BASEURI = '/api/profile';
+//   const state = ref([]);
+//   //TodoList목록을조회합니다.
+//   const fetchProfile = async () => {
+//     try {
+//       const response = await axios.get(BASEURI);
+//       if (response.status === 200) {
+//         state.todoList = response.data;
+//       } else {
+//         alert('데이터조회실패');
+//       }
+//     } catch (error) {
+//       alert('에러발생:' + error);
+//     }
+//   };
+
+//   const profile = computed(() => state.profile);
+
+//   return {
+//     profile,
+//     fetchProfile,
+//   };
+// });
