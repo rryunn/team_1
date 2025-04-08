@@ -21,7 +21,10 @@
     <!-- 상단 프로필 이미지 영역 -->
     <div class="profile-pic-wrapper">
       <!-- 프로필 이미지 -->
-      <div class="profile-pic">
+      <div
+        class="profile-pic"
+        :style="{ backgroundImage: `url(${user_profile})` }"
+      >
         <button @click="editProfileImage" class="profile-edit">Edit</button>
       </div>
     </div>
@@ -65,6 +68,7 @@ profileStore.fetchProfile();
 
 const user_name = computed(() => profileStore.user_name); // Pinia 스토어에서 사용자 이름 가져오기
 const user_email = computed(() => profileStore.user_email); // Pinia 스토어에서 사용자 이메일 가져오기
+const user_profile = computed(() => profileStore.user_profile); // Pinia 스토어에서 사용자 프로필 가져오기
 
 // 뒤로가기 함수
 const goBack = () => {

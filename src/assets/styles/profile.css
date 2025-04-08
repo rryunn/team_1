@@ -1,3 +1,7 @@
+:root {
+  --profile-image-url: 'src/assets/images/lamu.png'; /* CSS 전역 변수 선언 */
+}
+
 /* Top 구역 */
 .top {
   display: flex;
@@ -64,8 +68,6 @@
 }
 
 .profile-pic {
-  /* 업로드된 이미지가 없을 때 placeholder 스타일 */
-  background-image: url('@/assets/lamu.png');
   background-size: cover;
   background-position: -2px 5px;
   width: 100%;
