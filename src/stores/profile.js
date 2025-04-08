@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
@@ -34,31 +34,3 @@ export const useProfileStore = defineStore('profile', () => {
 
   return { user_name, user_email, fetchProfile, handleEditProfile };
 });
-
-// import { defineStore } from 'pinia';
-// import { ref, computed } from 'vue';
-// import axios from 'axios';
-// export const useProfileStore = defineStore('Profile', () => {
-//   const BASEURI = '/api/profile';
-//   const state = ref([]);
-//   //TodoList목록을조회합니다.
-//   const fetchProfile = async () => {
-//     try {
-//       const response = await axios.get(BASEURI);
-//       if (response.status === 200) {
-//         state.todoList = response.data;
-//       } else {
-//         alert('데이터조회실패');
-//       }
-//     } catch (error) {
-//       alert('에러발생:' + error);
-//     }
-//   };
-
-//   const profile = computed(() => state.profile);
-
-//   return {
-//     profile,
-//     fetchProfile,
-//   };
-// });
