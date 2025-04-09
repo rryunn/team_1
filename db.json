@@ -1,8 +1,7 @@
 {
   "profile": {
     "name": "김국민",
-    "email": "kookmin@example.com",
-    "profileImage": "src/assets/images/lamu.png"
+    "email": "kookmin@example.com"
   },
   "transactions": [
     {
