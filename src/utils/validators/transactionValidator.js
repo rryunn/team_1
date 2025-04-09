@@ -1,4 +1,3 @@
-// src/utils/validators/transactionValidator.ts
 export function validateTransactionPayload(payload) {
   const requiredFields = ['title', 'type', 'amount', 'date', 'category'];
 
