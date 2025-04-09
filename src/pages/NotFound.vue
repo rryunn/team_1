@@ -57,4 +57,8 @@
   color: #000;
   font-size: 12px;
 }
+
+.to-home:hover {
+  background: none;
+}
 </style>
