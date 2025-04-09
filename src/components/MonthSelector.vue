@@ -45,7 +45,7 @@ const selectedMonth = computed({
   padding: 10px 12px;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 16px;
   color: #111827; 
   cursor: pointer;
 }

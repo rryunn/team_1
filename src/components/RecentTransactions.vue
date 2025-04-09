@@ -2,7 +2,17 @@
   <div class="recent-transactions">
     <div class="header">
       <span class="title">최근 거래 내역</span>
-      <button class="view-all" @click="goToAllTransationcs">></button>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        class="arrow-icon"
+        @click="goToAllTransationcs"
+      >
+        <path
+          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+        />
+      </svg>
+      <!-- <button class="view-all" @click="goToAllTransationcs">></button> -->
     </div>
     
     <ul class="transaction-list">
@@ -85,13 +95,13 @@ const formatDate = (dateStr) => {
   padding: 8px 0;
   border-bottom: 1px solid #e5e7eb;
 }
-.view-all{
+/* .view-all{
   background: none;
   border: none;
   cursor: pointer;
   font-weight:500;
   color: #87888a;
-}
+} */
 .info {
   display: flex;
   flex-direction: column;
@@ -111,5 +121,11 @@ const formatDate = (dateStr) => {
 }
 .amount.income {
   color: rgb(235, 45, 45);
+}
+.arrow-icon {
+  width: 9px;
+  margin-left: 3px;
+  fill: #333;
+  cursor: pointer;
 }
 </style>
