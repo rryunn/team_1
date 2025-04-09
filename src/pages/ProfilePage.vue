@@ -66,9 +66,9 @@ const router = useRouter();
 const profileStore = useProfileStore(); // Pinia 스토어 사용
 profileStore.fetchProfile();
 
-const user_name = computed(() => profileStore.user_name); // Pinia 스토어에서 사용자 이름 가져오기
-const user_email = computed(() => profileStore.user_email); // Pinia 스토어에서 사용자 이메일 가져오기
-const user_profile = computed(() => profileStore.user_profile); // Pinia 스토어에서 사용자 프로필 가져오기
+const user_name = computed(() => profileStore.user.name); // Pinia 스토어에서 사용자 이름 가져오기
+const user_email = computed(() => profileStore.user.email); // Pinia 스토어에서 사용자 이메일 가져오기
+const user_profile = computed(() => profileStore.user.profileImage); // Pinia 스토어에서 사용자 프로필 가져오기
 
 // 뒤로가기 함수
 const goBack = () => {
@@ -99,8 +99,8 @@ const editProfileDone = async () => {
   const updatedUser = {
     name: inputs[0].value,
     email: inputs[1].value,
+    profileImage: user_profile.value, // 기존 프로필 이미지 값을 유지
   };
-
   profileStore.handleEditProfile(updatedUser); // Pinia 스토어의 updateUser 메서드 호출
 
   inputs.forEach((input) => {
@@ -109,9 +109,9 @@ const editProfileDone = async () => {
 };
 
 const editProfileImage = () => {
-  console.log('프로필 이미지 수정 클릭됨');
+  alert('구현 중인 기능입니다.');
 };
 </script>
 <style scoped>
-@import '@/assets/styles/profile.css';
+@import '@/styles/profile.css';
 </style>

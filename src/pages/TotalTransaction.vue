@@ -68,11 +68,11 @@ const fetchTotals = () => {
 };
 
 watch(selectedMonth, () => {
-  fetchTotals(selectedMonth.value);
+  fetchTotals();
 });
 
 onMounted(() => {
-  fetchTotals(selectedMonth.value);
+  fetchTotals();
 });
 
 const goBack = () => {
@@ -85,5 +85,5 @@ const formatMoney = (amount) => {
 </script>
 
 <style scoped>
-@import '@/assets/styles/totalTransaction.css';
+@import '@/styles/totalTransaction.css';
 </style>
