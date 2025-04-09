@@ -1,0 +1,84 @@
+.total-category {
+  width: 375px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #807e7e;
+  padding: 10px;
+}
+
+.back {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.summary-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.filter {
+  width: 100px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 4px;
+  color: #807e7e;
+}
+
+.income span {
+  color: #ff3366;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.expense span {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.tab {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 12px;
+}
+
+.tab button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+}
+
+.tab .active {
+  color: black;
+  border-bottom: 2px solid black;
+}
