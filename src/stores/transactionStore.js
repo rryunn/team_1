@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { validateTransactionPayload } from '@/utils/validators/transactionValidator';
 
 export const useTransactionStore = defineStore('transaction', {
   state: () => ({
     totalIncome: 0,
     totalExpense: 0,
+    transactions: [],
+    selectedTransaction: null,
   }),
   actions: {
     async fetchTotals(month = 'all') {
@@ -35,6 +38,49 @@ export const useTransactionStore = defineStore('transaction', {
         );
       } catch (err) {
         console.error('store에서 합계 가져오기 실패:', err);
+      }
+    },
+
+    async getTransactionById(id) {
+      try {
+        const response = await axios.get(`/api/transactions/${id}`);
+        this.selectedTransaction = response.data;
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    },
+
+    async registerTransaction(payload) {
+      try {
+        validateTransactionPayload(payload);
+        const response = await axios.post('/api/transactions', payload);
+        this.transactions.push(response.data);
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    },
+
+    async editTransaction(id, payload) {
+      try {
+        validateTransactionPayload(payload);
+        const response = await axios.put(`/api/transactions/${id}`, payload);
+        const index = this.transactions.findIndex((tx) => tx.id === id);
+        if (index !== -1) this.transactions[index] = response.data;
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    },
+
+    async deleteTransaction(id) {
+      try {
+        await axios.delete(`/api/transactions/${id}`);
+        this.transactions = this.transactions.filter((tx) => tx.id !== id);
+      } catch (e) {
+        console.log(e);
+        throw e;
       }
     },
   },
