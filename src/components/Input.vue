@@ -10,20 +10,42 @@ const props = defineProps({
     type: [String, Number],
     default: '',
   },
+  type: {
+    type: String,
+    default: 'text',
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
 
 const inputValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val),
+  get: () => {
+    if (
+      props.type === 'datetime-local' &&
+      typeof props.modelValue === 'string'
+    ) {
+      return props.modelValue.slice(0, 16);
+    }
+    return props.modelValue;
+  },
+  set: (val) => {
+    if (
+      props.type === 'datetime-local' &&
+      typeof val === 'string' &&
+      val.length === 16
+    ) {
+      emit('update:modelValue', `${val}:00`);
+    } else {
+      emit('update:modelValue', val);
+    }
+  },
 });
 </script>
 
 <template>
   <div class="input-wrapper">
     <label class="label">{{ label }}</label>
-    <input type="text" class="input-value" v-model="inputValue" />
+    <input :type="type" class="input-value" v-model="inputValue" />
   </div>
 </template>
 
