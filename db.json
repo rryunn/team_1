@@ -1,7 +1,8 @@
 {
   "profile": {
-    "name": "김국민ghj",
-    "email": "kookmin@example.com"
+    "name": "김국민",
+    "email": "kookmin@example.com",
+    "profileImage": "src/assets/images/lamu.png"
   },
   "transactions": [
     {
@@ -318,6 +319,15 @@
       "date": "2025-08-25T17:00:00",
       "category": "쇼핑",
       "memo": "불량 환불"
+    },
+    {
+      "id": "3704",
+      "title": "배민",
+      "type": "지출",
+      "amount": "24566",
+      "date": "2025-12-28T10:00:00",
+      "category": "식비",
+      "memo": "치킨"
     }
   ]
 }
