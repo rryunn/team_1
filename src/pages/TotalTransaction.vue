@@ -1,20 +1,6 @@
 <template>
   <div class="total-category">
-    <header class="header">
-      <!-- 뒤로가기 SVG 버튼 -->
-      <button @click="goBack" class="back-button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-          class="back-icon"
-        >
-          <path
-            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
-          />
-        </svg>
-      </button>
-      거래 내역
-    </header>
+    <Header label="거래내역"></Header>
 
     <div class="summary-filter">
       <select class="filter" v-model="selectedMonth">
@@ -64,7 +50,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { useTransactionStore } from '@/stores/transactionStore';
 import { storeToRefs } from 'pinia';
-
+import Header from '@/components/Header.vue';
 import DailyTransaction from '@/pages/DailyTransaction.vue';
 import CategoryTransaction from '@/pages/CategoryTransaction.vue';
 
