@@ -109,7 +109,7 @@ const editProfileDone = async () => {
 };
 
 const editProfileImage = () => {
-  console.log('프로필 이미지 수정 클릭됨');
+  alert('구현 중인 기능입니다.');
 };
 </script>
 <style scoped>
