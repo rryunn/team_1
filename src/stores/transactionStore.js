@@ -28,11 +28,11 @@ export const useTransactionStore = defineStore('transaction', () => {
       const filteredExpense = filterByMonth(expenseRes.data, month);
 
       totalIncome.value = filteredIncome.reduce(
-        (sum, item) => sum + item.amount,
+        (sum, item) => sum + Number(item.amount),
         0
       );
       totalExpense.value = filteredExpense.reduce(
-        (sum, item) => sum + item.amount,
+        (sum, item) => sum + Number(item.amount),
         0
       );
     } catch (err) {
@@ -86,6 +86,10 @@ export const useTransactionStore = defineStore('transaction', () => {
   };
 
   return {
+    totalIncome,
+    totalExpense,
+    transactions,
+    selectedTransaction,
     fetchTotals,
     getTransactionById,
     registerTransaction,
