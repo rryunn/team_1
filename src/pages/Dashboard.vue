@@ -48,13 +48,12 @@ const goToRegistration = () => {
   max-width: 640px;
   margin: 0 0.5rem;
   padding-top: 0;
-  /* margin-top: 1.5rem; */
-  padding: 1rem;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
 }
 .button-container{
   display: flex;
-  justify-content: flex-end;
-    
+  justify-content: flex-end;    
 }
 .circle{  
   border: none;
@@ -65,6 +64,6 @@ const goToRegistration = () => {
   font-size:larger;
   font-weight: bolder;
   background-color: rgb(249, 225, 149);
-  margin-top: 7px;
+  margin-top: 3px;
 }
 </style>

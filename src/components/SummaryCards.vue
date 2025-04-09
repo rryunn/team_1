@@ -48,7 +48,7 @@
   }
   
   .summary-card.income {
-    background: linear-gradient(to right, #f8808c, #f05aa5); 
+    background: linear-gradient(to right, #fc8d98, #f05aa5); 
   }
   
   .summary-card.net {
