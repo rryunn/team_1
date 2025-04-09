@@ -1,3 +1,7 @@
-<template></template>
+<template>
+  <ProfileMain />
+</template>
 
-<script setup></script>
+<script setup>
+import ProfileMain from '@/components/ProfileMain.vue';
+</script>
