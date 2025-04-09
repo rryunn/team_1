@@ -17,8 +17,8 @@ import { useProfileStore } from '@/stores/profile.js';
 const profileStore = useProfileStore(); // Pinia 스토어 사용
 profileStore.fetchProfile();
 
-const user_name = computed(() => profileStore.user_name); // Pinia 스토어에서 사용자 이름 가져오기
-const user_profile = computed(() => profileStore.user_profile); // Pinia 스토어에서 사용자 프로필 가져오기
+const user_name = computed(() => profileStore.user.name); // Pinia 스토어에서 사용자 이름 가져오기
+const user_profile = computed(() => profileStore.user.profileImage); // Pinia 스토어에서 사용자 프로필 가져오기
 </script>
 
 <style scoped>

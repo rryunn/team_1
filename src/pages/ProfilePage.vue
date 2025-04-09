@@ -113,5 +113,5 @@ const editProfileImage = () => {
 };
 </script>
 <style scoped>
-@import '@/assets/styles/profile.css';
+@import '@/styles/profile.css';
 </style>
