@@ -33,7 +33,11 @@ const router = createRouter({
       name: 'profile',
       component: () => import('@/pages/ProfilePage.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/pages/NotFound.vue'),
+    },
   ],
 });
-
 export default router;
