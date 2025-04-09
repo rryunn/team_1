@@ -200,8 +200,12 @@ watch(filteredTransactions, () => {
 .transaction-list {
   display: flex;
   flex-direction: column;
-  height: 90vh;
   padding: 0 16px;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .date-range-filter {
@@ -215,8 +219,8 @@ watch(filteredTransactions, () => {
 }
 
 .scroll-area {
-  height: calc(100vh - 200px);
-  overflow-y: auto;
+  overflow-y: unset;
+  height: auto;
 }
 .scroll-content {
   flex-direction: column;
@@ -229,7 +233,6 @@ watch(filteredTransactions, () => {
   font-size: 14px;
   background-color: #fff;
 }
-
 .filter-btn {
   white-space: nowrap;
   display: inline-block;
@@ -257,7 +260,6 @@ watch(filteredTransactions, () => {
   margin-bottom: 5px;
   color: #444;
 }
-
 .transaction-item {
   display: flex;
   align-items: center;
