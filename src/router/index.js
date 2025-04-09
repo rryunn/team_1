@@ -4,9 +4,9 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'Dashboard',
-      component: () => import('@/pages/Dashboard.vue'),
+      path: '/transactions',
+      name: 'transactions',
+      component: () => import('@/pages/TransactionRegisterPage.vue'),
     },
     {
       path: '/registration',
@@ -17,11 +17,6 @@ const router = createRouter({
       path: '/totaltransaction',
       name: 'totalTransaction',
       component: () => import('@/pages/TotalTransaction.vue'),
-    },
-    {
-      path: '/transactions',
-      name: 'transactions',
-      component: () => import('@/pages/TransactionRegisterPage.vue'),
     },
     {
       path: '/transactions/edit/:id',
