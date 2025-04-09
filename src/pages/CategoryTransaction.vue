@@ -71,7 +71,7 @@ const incomeByCategory = computed(() => {
   transactions.value
     .filter((t) => t.type === '수입')
     .forEach((t) => {
-      result[t.category] = (result[t.category] || 0) + t.amount;
+      result[t.category] = (result[t.category] || 0) + Number(t.amount);
     });
   return result;
 });
@@ -81,7 +81,7 @@ const expenseByCategory = computed(() => {
   transactions.value
     .filter((t) => t.type === '지출')
     .forEach((t) => {
-      result[t.category] = (result[t.category] || 0) + t.amount;
+      result[t.category] = (result[t.category] || 0) + Number(t.amount);
     });
   return result;
 });
