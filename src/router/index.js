@@ -38,6 +38,7 @@ const router = createRouter({
       name: 'NotFound',
       component: () => import('@/pages/NotFound.vue'),
     },
+    
   ],
 });
 export default router;
