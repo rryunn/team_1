@@ -42,7 +42,10 @@
       v-if="activeTab === 'daily'"
       :selectedMonth="selectedMonth"
     />
-    <CategoryTransaction v-if="activeTab === 'category'" />
+    <CategoryTransaction
+      v-if="activeTab === 'category'"
+      :selectedMonth="selectedMonth"
+    />
   </div>
 </template>
 
