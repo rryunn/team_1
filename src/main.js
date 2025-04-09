@@ -8,6 +8,7 @@ import router from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/global.css';
 
+
 const app = createApp(App);
 
 app.use(createPinia());
