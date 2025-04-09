@@ -13,5 +13,7 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md');
   <div>
     <h2>총수입</h2>
     <p>3,5000,00원</p>
+
+    <RouterLink to="/totalTransaction">거래내역보기</RouterLink>
   </div>
 </template>
