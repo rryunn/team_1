@@ -19,6 +19,7 @@ profileStore.fetchProfile();
 
 const user_name = computed(() => profileStore.user.name); // Pinia 스토어에서 사용자 이름 가져오기
 const user_profile = computed(() => profileStore.user.profileImage); // Pinia 스토어에서 사용자 프로필 가져오기
+console.log('user_name');
 </script>
 
 <style scoped>
@@ -27,6 +28,7 @@ const user_profile = computed(() => profileStore.user.profileImage); // Pinia �
   align-items: center;
   padding: 10px;
   gap: 5px;
+  
 }
 
 .profile-image {
