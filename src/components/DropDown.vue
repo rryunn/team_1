@@ -42,9 +42,11 @@ const selectedValue = computed({
 }
 
 .dropdown {
-  padding: 10px;
+  padding: 10px 30px 10px 10px;
   border: 2px solid #d1d5db;
   border-radius: 12px;
   font-size: 14px;
+  appearance: none;
+  background: url('@/assets/downArrow.svg') no-repeat 97% 50%/15px auto;
 }
 </style>

@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
   <header class="header">
     <img
-      src="@/assets/backArrow.png"
+      src="@/assets/backArrow.svg"
       alt="뒤로가기"
       class="back-arrow"
       @click="$router.back()"
