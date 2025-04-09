@@ -37,7 +37,7 @@
   border-radius: 10px;
 }
 .not-found-container p {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
   font-weight: 400;
   color: #000;
@@ -48,7 +48,7 @@
 }
 
 .not-found-container .error-404 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 }
