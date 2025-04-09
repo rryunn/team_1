@@ -7,8 +7,7 @@ const router = createRouter({
       path: '/',
       name: 'Dashboard',
       component: () => import('@/pages/Dashboard.vue'),
-
-    },    
+    },
     {
       path: '/totaltransaction',
       name: 'totalTransaction',
