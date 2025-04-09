@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+#app {
+  width: 375px;
+  height: 667px;
+  background-color: white;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+  #app {
+    width: 375px;
+    height: 667px;
+  }
+}
