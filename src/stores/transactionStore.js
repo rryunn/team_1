@@ -95,7 +95,5 @@ export const useTransactionStore = defineStore('transaction', () => {
     registerTransaction,
     editTransaction,
     deleteTransaction,
-    totalExpense,
-    totalIncome
   };
 });
