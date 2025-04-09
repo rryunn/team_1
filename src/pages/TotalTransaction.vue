@@ -68,11 +68,11 @@ const fetchTotals = () => {
 };
 
 watch(selectedMonth, () => {
-  fetchTotals();
+  fetchTotals(selectedMonth.value);
 });
 
 onMounted(() => {
-  fetchTotals();
+  fetchTotals(selectedMonth.value);
 });
 
 const goBack = () => {
