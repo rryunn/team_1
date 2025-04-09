@@ -9,11 +9,6 @@ const router = createRouter({
       component: () => import('@/pages/Dashboard.vue'),
     },
     {
-      path: '/registration',
-      name: 'Registration',
-      component: () => import('@/pages/Registration.vue'),
-    },
-    {
       path: '/totaltransaction',
       name: 'totalTransaction',
       component: () => import('@/pages/TotalTransaction.vue'),
@@ -38,7 +33,6 @@ const router = createRouter({
       name: 'NotFound',
       component: () => import('@/pages/NotFound.vue'),
     },
-    
   ],
 });
 export default router;
