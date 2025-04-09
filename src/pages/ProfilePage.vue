@@ -91,9 +91,8 @@ const editProfile = () => {
 // 프로필 Edit 완료 함수
 const editProfileDone = async () => {
   const editButton = document.querySelector('.edit-button');
-  editButton.style.display = 'block';
+
   const doneButton = document.querySelector('.done-button');
-  doneButton.style.display = 'none';
 
   const inputs = document.querySelectorAll('.info-text');
   const updatedUser = {
@@ -101,11 +100,16 @@ const editProfileDone = async () => {
     email: inputs[1].value,
     profileImage: user_profile.value, // 기존 프로필 이미지 값을 유지
   };
-  profileStore.handleEditProfile(updatedUser); // Pinia 스토어의 updateUser 메서드 호출
+  const success = await profileStore.handleEditProfile(updatedUser);
 
-  inputs.forEach((input) => {
-    input.disabled = true;
-  });
+  // pinia에서 전달 받은 반환값 success가 true일 때만 프로필 수정 완료
+  if (success) {
+    inputs.forEach((input) => {
+      editButton.style.display = 'block';
+      doneButton.style.display = 'none';
+      input.disabled = true;
+    });
+  }
 };
 
 const editProfileImage = () => {
