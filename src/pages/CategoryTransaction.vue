@@ -1,1 +1,3 @@
-<template>카테고리요</template>
+<template></template>
+
+<script setup></script>
