@@ -39,7 +39,7 @@ onMounted(() => {
 })
 // + 버튼 누르면 등록 페이지로 이동
 const goToRegistration = () => {
-  router.push('/registration')
+  router.push('/transactions')
 }
 </script>
 
