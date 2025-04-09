@@ -1,5 +1,9 @@
 {
-  "profile": { "name": "김국민", "email": "kookmin@example.com" },
+  "profile": {
+    "name": "김국민",
+    "email": "kookmin@example.com",
+    "profileImage": "src/assets/images/lamu.png"
+  },
   "transactions": [
     {
       "id": "1",
@@ -91,7 +95,6 @@
       "category": "문화생활",
       "memo": "청년지원금"
     },
-
     {
       "id": "11",
       "title": "편의점 간식",
