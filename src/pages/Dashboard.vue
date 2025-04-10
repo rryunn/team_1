@@ -26,18 +26,19 @@ const store = useTransactionStore(); // totalIncome, totalExpense, fetchTotal
 // 현재 선택된 월 (기본값: 현재 월 (= 4월))
 const selectedMonth = ref(new Date().getMonth() + 1);
 
+const currentYear = new Date().getFullYear();
+
 // selectedMonth(월) 변경될 때마다 store에서 합계 가져오기
 watch(selectedMonth, (newMonth) => {
-  store.fetchTotals(newMonth);
+  store.fetchTotals(newMonth, currentYear);
 });
 
 // 초기 mount 시 데이터 불러오기
 onMounted(() => {
-  store.fetchTotals(selectedMonth.value);
+  store.fetchTotals(selectedMonth.value, currentYear);
 });
 // + 버튼 누르면 등록 페이지로 이동
 const goToRegistration = () => {
-
   router.push('/transactions')
 }
 </script>
