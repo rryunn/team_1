@@ -69,32 +69,44 @@ const handleDelete = async () => {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="container">
     <Header label="거래 상세조회 및 수정"></Header>
+    <div class="wrapper">
+      <Input type="text" label="거래명" v-model="transactionTitle" />
+      <DropDown
+        label="거래 분류"
+        :options="transactionCategories"
+        v-model:selected="transactionType"
+      />
+      <Input type="number" label="거래 금액" v-model="transactionAmount" />
+      <Input
+        type="datetime-local"
+        label="거래 시간"
+        v-model="transactionTime"
+      />
+      <DropDown
+        label="거래 카테고리"
+        :options="categoryOptions"
+        v-model:selected="transactionCategory"
+      />
+      <Input type="text" label="거래 메모" v-model="transactionMemo" />
 
-    <Input label="거래명" v-model="transactionTitle" />
-    <DropDown
-      label="거래 분류"
-      :options="transactionCategories"
-      v-model:selected="transactionType"
-    />
-    <Input label="거래 금액" v-model="transactionAmount" />
-    <Input label="거래 시간" v-model="transactionTime" />
-    <DropDown
-      label="거래 카테고리"
-      :options="categoryOptions"
-      v-model:selected="transactionCategory"
-    />
-    <Input label="거래 메모" v-model="transactionMemo" />
-
-    <div class="button-wrapper">
-      <button class="button-delete" @click="handleDelete">삭제</button>
-      <button class="button-complete" @click="handleModify">수정 완료</button>
+      <div class="button-wrapper">
+        <button class="button-delete" @click="handleDelete">삭제</button>
+        <button class="button-complete" @click="handleModify">수정 완료</button>
+      </div>
     </div>
   </div>
 </template>
 
 <style>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

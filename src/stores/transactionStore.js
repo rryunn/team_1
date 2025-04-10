@@ -9,23 +9,29 @@ export const useTransactionStore = defineStore('transaction', () => {
   const transactions = ref([]);
   const selectedTransaction = ref(null);
 
-  const filterByMonth = (list, month) => {
-    if (month === 'all') return list;
+  // ✅ 연도까지 함께 필터링
+  const filterByMonth = (list, month, year = null) => {
     return list.filter((item) => {
-      const itemMonth = new Date(item.date).getMonth() + 1;
-      return itemMonth === Number(month);
+      const date = new Date(item.date);
+      const itemMonth = date.getMonth() + 1;
+      const itemYear = date.getFullYear();
+
+      const matchMonth = month === 'all' || itemMonth === Number(month);
+      const matchYear = year === null || itemYear === Number(year);
+
+      return matchMonth && matchYear;
     });
   };
 
-  const fetchTotals = async (month = 'all') => {
+  const fetchTotals = async (month = 'all', year = null) => {
     try {
       const [incomeRes, expenseRes] = await Promise.all([
         axios.get('/api/transactions?type=수입'),
         axios.get('/api/transactions?type=지출'),
       ]);
 
-      const filteredIncome = filterByMonth(incomeRes.data, month);
-      const filteredExpense = filterByMonth(expenseRes.data, month);
+      const filteredIncome = filterByMonth(incomeRes.data, month, year);
+      const filteredExpense = filterByMonth(expenseRes.data, month, year);
 
       totalIncome.value = filteredIncome.reduce(
         (sum, item) => sum + Number(item.amount),

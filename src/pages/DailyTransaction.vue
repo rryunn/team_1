@@ -10,45 +10,51 @@
 
     <div class="scroll-area">
       <div class="scroll-content">
-        <div
-          v-for="[date, items] in groupedPaginatedTransactions"
-          :key="date"
-          class="day-group"
-        >
-          <h4 class="date">{{ date }}</h4>
-          <ul>
-            <li
-              v-for="tx in items"
-              :key="tx.id"
-              class="transaction-item"
-              @click="goToDetail(tx.id)"
-            >
-              <span class="icon">{{ getIcon(tx.category) }}</span>
-              <span class="name">{{ tx.title }}</span>
-              <span
-                class="amount"
-                :class="{
-                  income: tx.type === '수입',
-                  expense: tx.type === '지출',
-                }"
+        <!-- 거래 내역 있을 때 -->
+        <div v-if="groupedPaginatedTransactions.length > 0">
+          <div
+            v-for="[date, items] in groupedPaginatedTransactions"
+            :key="date"
+            class="day-group"
+          >
+            <h4 class="date">{{ date }}</h4>
+            <ul>
+              <li
+                v-for="tx in items"
+                :key="tx.id"
+                class="transaction-item"
+                @click="goToDetail(tx.id)"
               >
-                {{ tx.type === '수입' ? '+' : '-' }}
-                {{ tx.amount.toLocaleString() }}원
-              </span>
-            </li>
-          </ul>
+                <span class="icon">{{ getIcon(tx.category) }}</span>
+                <span class="name">{{ tx.title }}</span>
+                <span
+                  class="amount"
+                  :class="{
+                    income: tx.type === '수입',
+                    expense: tx.type === '지출',
+                  }"
+                >
+                  {{ tx.type === '수입' ? '+' : '-' }}
+                  {{ tx.amount.toLocaleString() }}원
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pagination" v-if="totalPages > 1">
+            <span
+              v-for="n in totalPages"
+              :key="n"
+              @click="currentPage = n"
+              :class="{ 'page-number': true, active: currentPage === n }"
+            >
+              {{ n }}
+            </span>
+          </div>
         </div>
 
-        <div class="pagination" v-if="totalPages > 1">
-          <span
-            v-for="n in totalPages"
-            :key="n"
-            @click="currentPage = n"
-            :class="{ 'page-number': true, active: currentPage === n }"
-          >
-            {{ n }}
-          </span>
-        </div>
+        <!-- 거래 내역 없을 때 -->
+        <div v-else class="empty-message">거래 내역이 없습니다.</div>
       </div>
     </div>
   </div>
@@ -63,6 +69,10 @@ const props = defineProps({
   selectedMonth: {
     type: [String, Number],
     default: 'all',
+  },
+  selectedYear: {
+    type: Number,
+    default: new Date().getFullYear(),
   },
 });
 
@@ -118,16 +128,25 @@ const totalPages = computed(() => groupedTransactionsByItems.value.length);
 
 const fetchTransactions = async () => {
   try {
-    let url = 'http://localhost:3000/transactions';
+    const res = await axios.get('http://localhost:3000/transactions');
+    let list = res.data;
 
-    if (props.selectedMonth !== 'all') {
-      const paddedMonth = String(props.selectedMonth).padStart(2, '0');
-      const currentYear = new Date().getFullYear();
-      url += `?date_like=${currentYear}-${paddedMonth}`;
-    }
+    const year = Number(props.selectedYear);
+    const month =
+      props.selectedMonth === 'all' ? null : Number(props.selectedMonth);
 
-    const res = await axios.get(url);
-    filteredTransactions.value = res.data;
+    list = list.filter((tx) => {
+      const date = new Date(tx.date);
+      const txYear = date.getFullYear();
+      const txMonth = date.getMonth() + 1;
+
+      const yearMatches = txYear === year;
+      const monthMatches = month ? txMonth === month : true;
+
+      return yearMatches && monthMatches;
+    });
+
+    filteredTransactions.value = list;
     currentPage.value = 1;
   } catch (err) {
     console.error('거래내역 가져오기 실패:', err);
@@ -183,7 +202,7 @@ onMounted(() => {
 });
 
 watch(
-  () => props.selectedMonth,
+  () => [props.selectedMonth, props.selectedYear],
   async () => {
     startDate.value = '';
     endDate.value = '';
@@ -209,7 +228,6 @@ ul {
 }
 
 .date-range-filter {
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -235,7 +253,6 @@ ul {
 }
 .filter-btn {
   white-space: nowrap;
-  display: inline-block;
   padding: 6px;
   min-width: 50px;
   border-radius: 6px;
@@ -246,7 +263,6 @@ ul {
   color: #fff;
   margin-right: 6px;
 }
-
 .filter-btn:hover {
   background-color: #0056b3;
 }
@@ -271,7 +287,6 @@ ul {
   cursor: pointer;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
 .transaction-item:hover {
   background-color: #f0f0f0;
   transform: translateY(-2px);
@@ -281,26 +296,21 @@ ul {
 .icon {
   margin-right: 10px;
 }
-
 .name {
   flex: 1;
   text-align: left;
 }
-
 .amount {
   font-weight: bold;
 }
-
 .income {
   color: red;
 }
-
 .expense {
   color: blue;
 }
 
 .pagination {
-  margin: 0;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -312,15 +322,22 @@ ul {
   border-radius: 4px;
   transition: background-color 0.2s;
 }
-
 .page-number:hover {
   background-color: #f0f0f0;
 }
-
 .page-number.active {
   font-weight: bold;
   border: 1px solid #007bff;
   background-color: #e6f0ff;
   color: #007bff;
+}
+
+/* ✨ 거래 내역 없을 때 */
+.empty-message {
+  padding: 40px 0;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  font-style: italic;
 }
 </style>
