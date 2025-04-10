@@ -5,8 +5,10 @@ import Header from '@/components/Header.vue';
 import Input from '@/components/Input.vue';
 import DropDown from '@/components/DropDown.vue';
 import { transactionCategories, categoryOptions } from '@/constants/category';
+import { useRouter } from 'vue-router';
 
 const store = useTransactionStore();
+const router = useRouter();
 
 const transactionTitle = ref('');
 const transactionType = ref('');
@@ -28,6 +30,7 @@ async function handleSubmit() {
   try {
     await store.registerTransaction(payload);
     alert('등록 성공');
+    router.push({ path: '/' });
   } catch (error) {
     console.error('등록 실패:', error);
     alert('등록 실패: ' + error.message);
