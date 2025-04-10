@@ -41,8 +41,8 @@ const selectedMonth = computed({
 }
 
 .month-dropdown {  
-  background-color: #f9fafb; 
-  padding: 10px 12px;
+  /* background-color: #f9fafb;  */
+  padding: 10px 0;
   border: none;
   border-radius: 8px;
   font-size: 16px;
