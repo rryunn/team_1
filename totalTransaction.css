@@ -1,0 +1,117 @@
+.total-category {
+  width: 375px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.back {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.summary-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 5px 15px;
+}
+
+.filter {
+  width: 100px;
+  padding: 2px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 0 4px;
+  color: #807e7e;
+}
+
+.income span {
+  color: #ff3366;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.expense span {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.tab {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 12px;
+}
+
+.tab button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+}
+
+.tab .active {
+  color: black;
+  border-bottom: 2px solid black;
+}
+
+/* 연도 네비게이션 */
+.year-navigation {
+  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+  font-size: 12px;
+  color: #555;
+}
+.year-label {
+  font-size: 15px;
+  color: #333;
+}
+.year-btn {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.year-btn:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1);
+}
