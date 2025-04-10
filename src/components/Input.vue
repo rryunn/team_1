@@ -14,6 +14,10 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
+  max: {
+    type: String,
+    default: '',
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -45,7 +49,7 @@ const inputValue = computed({
 <template>
   <div class="input-wrapper">
     <label class="label">{{ label }}</label>
-    <input :type="type" class="input-value" v-model="inputValue" />
+    <input :type="type" class="input-value" v-model="inputValue" :max="max" />
   </div>
 </template>
 
