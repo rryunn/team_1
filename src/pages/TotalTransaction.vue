@@ -7,7 +7,14 @@
       <div class="year-navigation">
         <button class="year-btn" @click="prevYear">&lt;</button>
         <span class="year-label">{{ selectedYear }}년</span>
-        <button class="year-btn" @click="nextYear">&gt;</button>
+        <!-- 2025년 이후 조회 금지 -->
+        <button
+          class="year-btn"
+          v-if="selectedYear < new Date().getFullYear()"
+          @click="nextYear"
+        >
+          &gt;
+        </button>
       </div>
 
       <!-- 월 select 드롭다운 -->
