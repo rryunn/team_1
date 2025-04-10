@@ -7,7 +7,14 @@
       <div class="year-navigation">
         <button class="year-btn" @click="prevYear">&lt;</button>
         <span class="year-label">{{ selectedYear }}년</span>
-        <button class="year-btn" @click="nextYear">&gt;</button>
+        <!-- 2025년 이후 조회 금지 -->
+        <button
+          class="year-btn"
+          v-if="selectedYear < new Date().getFullYear()"
+          @click="nextYear"
+        >
+          &gt;
+        </button>
       </div>
 
       <!-- 월 select 드롭다운 -->
@@ -65,8 +72,8 @@ import DailyTransaction from '@/pages/DailyTransaction.vue';
 import CategoryTransaction from '@/pages/CategoryTransaction.vue';
 
 const activeTab = ref('daily');
-const selectedMonth = ref('all');
-const selectedYear = ref(new Date().getFullYear()); // 연도 필터 선언
+const selectedMonth = ref(4); // 기본 값 4월
+const selectedYear = ref(new Date().getFullYear()); 
 
 const store = useTransactionStore();
 const { totalIncome, totalExpense } = storeToRefs(store);
