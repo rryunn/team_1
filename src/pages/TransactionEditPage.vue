@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Header from '@/components/Header.vue';
 import Input from '@/components/Input.vue';
 import DropDown from '@/components/DropDown.vue';
 import { transactionCategories, categoryOptions } from '@/constants/category';
 import { useTransactionStore } from '@/stores/transactionStore';
+import { getCurrentDatetimeLocal } from '@/utils/date';
 
 const store = useTransactionStore();
 const route = useRoute();
@@ -18,6 +19,23 @@ const transactionAmount = ref('');
 const transactionTime = ref('');
 const transactionCategory = ref('');
 const transactionMemo = ref('');
+
+const now = getCurrentDatetimeLocal();
+
+function handleTimeInput(event) {
+  const selectedValue = event.target.value;
+  const selectedDate = new Date(selectedValue);
+  const nowDate = new Date();
+
+  if (selectedDate > nowDate) {
+    alert('미래 시간은 선택할 수 없습니다.');
+    event.target.value = '';
+    transactionTime.value = '';
+    return;
+  }
+
+  transactionTime.value = selectedValue;
+}
 
 onMounted(async () => {
   try {
@@ -41,7 +59,7 @@ const handleModify = async () => {
     title: transactionTitle.value,
     type: transactionType.value,
     amount: transactionAmount.value,
-    date: transactionTime.value,
+    date: transactionTime.value + ':00',
     category: transactionCategory.value,
     memo: transactionMemo.value,
   };
@@ -83,6 +101,8 @@ const handleDelete = async () => {
         type="datetime-local"
         label="거래 시간"
         v-model="transactionTime"
+        :max="now"
+        @input="handleTimeInput"
       />
       <DropDown
         label="거래 카테고리"
