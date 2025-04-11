@@ -25,7 +25,7 @@
         class="profile-pic"
         :style="{ backgroundImage: `url(${user_profile})` }"
       >
-        <button @click="editProfileImage" class="profile-edit">Edit</button>
+        <!-- <button @click="editProfileImage" class="profile-edit">Edit</button> -->
       </div>
     </div>
     {{ user_name }}

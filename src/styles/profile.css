@@ -83,7 +83,7 @@
   overflow: hidden;
 }
 
-.profile-edit {
+/* .profile-edit {
   background-color: #7f7f7f;
   color: white;
   padding: 5px 10px;
@@ -92,7 +92,7 @@
   height: 30px;
   width: 100%;
   font-size: 14px;
-}
+} */
 
 /* info-area 영역 */
 .info-area {
