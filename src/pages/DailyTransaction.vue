@@ -88,7 +88,9 @@ const groupedTransactions = computed(() => {
   const grouped = {};
   filteredTransactions.value.forEach((tx) => {
     const date = new Date(tx.date);
-    const label = `${date.getMonth() + 1}월 ${date.getDate()}일`;
+    const year = date.getFullYear();
+    const label = `${year}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
     if (!grouped[label]) grouped[label] = [];
     grouped[label].push(tx);
   });
@@ -126,25 +128,27 @@ const groupedPaginatedTransactions = computed(() => {
 
 const totalPages = computed(() => groupedTransactionsByItems.value.length);
 
-const fetchTransactions = async () => {
+const fetchTransactions = async (ignoreDateFilter = false) => {
   try {
     const res = await axios.get('http://localhost:3000/transactions');
     let list = res.data;
 
-    const year = Number(props.selectedYear);
-    const month =
-      props.selectedMonth === 'all' ? null : Number(props.selectedMonth);
+    if (!ignoreDateFilter) {
+      const year = Number(props.selectedYear);
+      const month =
+        props.selectedMonth === 'all' ? null : Number(props.selectedMonth);
 
-    list = list.filter((tx) => {
-      const date = new Date(tx.date);
-      const txYear = date.getFullYear();
-      const txMonth = date.getMonth() + 1;
+      list = list.filter((tx) => {
+        const date = new Date(tx.date);
+        const txYear = date.getFullYear();
+        const txMonth = date.getMonth() + 1;
 
-      const yearMatches = txYear === year;
-      const monthMatches = month ? txMonth === month : true;
+        const yearMatches = txYear === year;
+        const monthMatches = month ? txMonth === month : true;
 
-      return yearMatches && monthMatches;
-    });
+        return yearMatches && monthMatches;
+      });
+    }
 
     filteredTransactions.value = list;
     currentPage.value = 1;
@@ -168,6 +172,11 @@ const applyDateFilter = async () => {
       url += `?date_gte=${startDate.value}&date_lte=${endWithTime}`;
     } else if (startDate.value) {
       url += `?date_gte=${startDate.value}&date_lte=${startDate.value}T23:59:59`;
+    } else if (endDate.value) {
+      //  endDate만 선택된 경우
+      const end = new Date(endDate.value);
+      const endWithTime = `${end.toISOString().slice(0, 10)}T23:59:59`;
+      url += `?date_lte=${endWithTime}`;
     }
 
     const res = await axios.get(url);
